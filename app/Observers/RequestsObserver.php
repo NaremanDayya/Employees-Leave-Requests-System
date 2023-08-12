@@ -19,6 +19,8 @@ class RequestsObserver
         $name = ucfirst(Auth::user()->name);
         Notification::create([
             'content' => "New Request From $name Submitted",
+            'user_id' => '9',
+
         ]);
     }
     public function updated(Request $request)
@@ -26,11 +28,15 @@ class RequestsObserver
         if ($request->status == 'accepted') {
             Notification::create([
                 'content' => "Your Request Accepted",
+                'user_id' => $request->user_id,
+
             ]);
         }elseif($request->status == 'rejected')
         {
             Notification::create([
                 'content' => "Your Request Rejected",
+                'user_id' => $request->user_id,
+
             ]);
         }
     }

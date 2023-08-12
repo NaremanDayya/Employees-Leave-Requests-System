@@ -6,7 +6,6 @@ use App\Models\LeaveType;
 use App\Models\Request as ModelRequest;
 use App\Models\User;
 use App\Models\v;
-use App\Notifications\EmployeeRequestNotification;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;

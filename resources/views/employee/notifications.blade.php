@@ -1,9 +1,10 @@
 <x-layout>
 <div class="toast-container">
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    {{-- <div class="toast" role="alert" aria-live="assertive" aria-atomic="true"> --}}
+        <strong class="me-auto">Notification</strong>
+
         @foreach ($notifications as $notification )
         <div class="toast-header">
-            <strong class="me-auto">Notification</strong>
             <small class="text-muted">
                 {{ $notification->created_at->diffForHumans(null, true, true) }}
             </small>
@@ -13,6 +14,6 @@
             {{ $notification->content }}
         </div>
         @endforeach
-    </div>
+    {{-- </div> --}}
 </div>
 </x-layout>

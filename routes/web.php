@@ -35,8 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::post('request/{request}/accept',[RequestsController::class,'accept'])->name('requests.accept');
     Route::post('request/{request}/reject',[RequestsController::class,'reject'])->name('requests.reject');
     Route::get('/myrequests',[EmployeesController::class,'myRequests'])->name('employee.requests');
-    Route::get('employee/{employee}/notification',[EmployeesController::class,'Empnotifications'])->name('employee.notifications');
-    Route::get('/notification',[EmployeesController::class,'Admnotifications'])->name('administrator.notifications');
+    Route::get('/notification',[EmployeesController::class,'Empnotifications'])->name('notifications');
    
 });
 require __DIR__.'/auth.php';

@@ -40,7 +40,13 @@
                                     href="{{ route('employee.request.index', Auth::user()->id) }}">Manage
                                     Requests</a></li>
                             <li class="nav-item"><a class="nav-link"
-                                    href="{{ route('administrator.notifications') }}">Notifications</a>
+                                    href="{{ route('notifications') }}">Notifications</a>
+                            </li>
+                            <li class="nav-item">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <a class="nav-link" href="javascript:void(0);" onclick="document.getElementById('logout-form').submit();">Logout</a>
+                                </form>
                             </li>
                         @elseif (Auth::user()->type == 'employee')
                             <li class="nav-item"><a class="nav-link"
@@ -49,7 +55,13 @@
                             <li class="nav-item"><a class="nav-link" href="{{ route('employee.requests') }}">Requests
                                     Status</a></li>
                             <li class="nav-item"><a class="nav-link"
-                                    href="{{ route('employee.notifications', Auth::user()->id) }}">Notifications</a>
+                                    href="{{ route('notifications', Auth::user()->id) }}">Notifications</a>
+                            </li>
+                            <li class="nav-item">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <a class="nav-link" href="javascript:void(0);" onclick="document.getElementById('logout-form').submit();">Logout</a>
+                                </form>
                             </li>
                         @endif
                     @else
