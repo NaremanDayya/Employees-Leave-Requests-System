@@ -6,6 +6,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Leave Type</th>
                     <th scope="col">Your Notes</th>
+                    <th scope="col">Duration</th>
                     <th scope="col">Status</th>
                     <th scope="col">Reason</th>
                   </tr>
@@ -16,6 +17,7 @@
                     <td>{{ $request->id }}</td>
                     <td>{{ $request->type->name }}</td>
                     <td>{{ $request->notes }}</td>
+                    <td>{{ \Carbon\Carbon::parse($request->from)->diffInDays(\Carbon\Carbon::parse($request->to)) }} Days</td>
                     <td>{{ $request->status }}</td>
                     <td>{{ $request->reason }}</td>
 

@@ -8,6 +8,7 @@
                     <th scope="col">Employee Name</th>
                     <th scope="col">Leave Type</th>
                     <th scope="col">Employee Notes</th>
+                    <th scope="col">Duration</th>
                     <th scope="col">Status</th>
                     <th scope="col">Change Status</th>
                 </tr>
@@ -21,19 +22,20 @@
                         <td>{{ $request->employee->name }}</td>
                         <td>{{ $request->type->name }}</td>
                         <td>{{ $request->notes }}</td>
+                        <td>{{ \Carbon\Carbon::parse($request->from)->diffInDays(\Carbon\Carbon::parse($request->to)) }} Days</td>
                         <td>{{ $request->status }}</td>
 
                         <td>
                             <div class="row">
                                 <div class="col">
-                                    <form action="{{ route('accept',$request->id) }}">
+                                    <form action="{{ route('accept', $request->id) }}">
                                         <button class="btn btn-success" request="submit">
-                                            <i class="fa-solid fa-check-circle" style="color: green;"></i>Accept 
+                                            <i class="fa-solid fa-check-circle" style="color: green;"></i>Accept
                                         </button>
                                     </form>
                                 </div>
                                 <div class="col">
-                                    <form action="{{ route('reject',$request->id) }}">
+                                    <form action="{{ route('reject', $request->id) }}">
                                         <button class="btn btn-danger" request="submit">
                                             <i class="fa-solid fa-times-circle" style="color: red;"></i> Reject
                                         </button>
