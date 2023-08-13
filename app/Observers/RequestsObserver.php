@@ -18,25 +18,28 @@ class RequestsObserver
     public function created(Request $request)
     {
         $name = ucfirst(Auth::user()->name);
-        Notification::create([
-            'content' => "New Request From $name Submitted",
-            'user_id' => '9',
+        $administrators = User::where('type', 'administrator')->get();
+        foreach ($administrators as $administrator) {
+            Notification::create([
+                'content' => "New Request From $name Submitted",
+                'user_id' => $administrator->id,
 
-        ]);
+            ]);
+        }
     }
     public function updated(Request $request)
     {
+        $name = $request->type->name;
+
         if ($request->status == 'accepted') {
-            $name = $request->type->name;
             Notification::create([
                 'content' => "Your Request $name Accepted",
                 'user_id' => $request->user_id,
 
             ]);
-        }elseif($request->status == 'rejected')
-        {
+        } elseif ($request->status == 'rejected') {
             Notification::create([
-                'content' => "Your Request Rejected",
+                'content' => "Your Request $name Rejected",
                 'user_id' => $request->user_id,
 
             ]);

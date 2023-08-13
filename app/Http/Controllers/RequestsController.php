@@ -40,10 +40,11 @@ class RequestsController extends Controller
     public function store(Request $request, ModelRequest $req)
     {
         $request->validate([
+            'type' => 'required',
             'notes' => 'nullable|string',
             'status' => 'nullable|in:accepted,waiting,rejected',
             'from' => 'nullable|date',
-            'to' => 'nullable|date',
+            'to' => 'nullable|date|after:from',
             'reason' => 'nullable|string',
         ]);
 
