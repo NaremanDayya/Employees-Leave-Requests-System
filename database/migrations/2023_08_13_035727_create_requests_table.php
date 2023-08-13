@@ -14,8 +14,11 @@ return new class extends Migration
                 $table->id();
                 $table->foreignId('user_id')->constrained()->cascadeOnDelete();
                 $table->foreignId('leave_type_id')->nullable()->constrained('leave_types')->nullOnDelete();
-                $table->enum('status', ['accepted', 'waiting', 'rejected']);
                 $table->text('notes');
+                $table->enum('status', ['accepted', 'waiting', 'rejected']);
+                $table->text('reason')->nullable();
+                $table->date('from')->nullable();
+                $table->date('to')->nullable();
                 $table->timestamps();
         });
     }

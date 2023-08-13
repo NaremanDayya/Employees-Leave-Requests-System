@@ -41,6 +41,9 @@ class RequestsController extends Controller
         $request->validate([
             'notes' => 'nullable|string',
             'status' => 'nullable|in:accepted,waiting,rejected',
+            'from' =>'nullable|date',
+            'to' =>'nullable|date',
+            'reason' => 'nullable|string',
         ]);
 
         $status = $request->input('status', 'waiting');
@@ -50,13 +53,13 @@ class RequestsController extends Controller
             'leave_type_id' => $request->input('type_id'),
         ]);
          ModelRequest::create($request->all());
-        // $admins = User::where('type', 'administrator')->get(); // Adjust the condition based on your user type setup
-        // Notification::send($admins, new EmployeeRequestNotification($newRequest));
+        // $admins = User::where('type', 'administrator')->get(); 
+        // Notification::send($admins, new EmployeeRequestNotification($request));
         $requests = Auth::user()->requests;
 
         return view('employee.requests')
             ->with([
-                'success'=> 'New Employee Added♥',
+                'success'=> 'New Request Added♥',
                 'requests' => $requests,
             ]);
     }
@@ -69,24 +72,35 @@ class RequestsController extends Controller
 
         return view('employee.requests.show', compact('request', 'employee'));
     }
-
+    public function acceptPage(ModelRequest $request)
+    {
+        return view('employee.requests.accept',compact('request'));
+    }
   
     /**
      * Show the form for editing the specified resource.
      */
-    public function accept(ModelRequest $request)
+    public function accept(Request $req ,ModelRequest $request)
     {
         $request->status = 'accepted';
+        $request->reason =$req->reason;
         $request->save();
         return back()->with('success', 'Request Accepted♥');
+    }
+
+    public function rejectPage(ModelRequest $request)
+    {
+        return view('employee.requests.reject',compact('request'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function reject(ModelRequest $request)
+    public function reject(Request $req ,ModelRequest $request)
     {
+        
         $request->status = 'rejected';
+        $request->reason =$req->reason;
         $request->save();
         return back()->with('error', 'Request Rejected!');
     }

@@ -26,16 +26,14 @@
                         <td>
                             <div class="row">
                                 <div class="col">
-                                    <form action="{{ route('requests.accept', $request->id) }}" method="POST">
-                                        @csrf
+                                    <form action="{{ route('accept',$request->id) }}">
                                         <button class="btn btn-success" request="submit">
-                                            <i class="fa-solid fa-check-circle" style="color: green;"></i> Accept
+                                            <i class="fa-solid fa-check-circle" style="color: green;"></i>Accept 
                                         </button>
                                     </form>
                                 </div>
                                 <div class="col">
-                                    <form action="{{ route('requests.reject', $request->id) }}" method="POST">
-                                        @csrf
+                                    <form action="{{ route('reject',$request->id) }}">
                                         <button class="btn btn-danger" request="submit">
                                             <i class="fa-solid fa-times-circle" style="color: red;"></i> Reject
                                         </button>

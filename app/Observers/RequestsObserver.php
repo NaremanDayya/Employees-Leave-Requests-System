@@ -12,6 +12,7 @@ class RequestsObserver
     public function creating(Request $request): void
     {
         $request->user_id = Auth::id();
+        $request->reason = '';
     }
 
     public function created(Request $request)
@@ -26,8 +27,9 @@ class RequestsObserver
     public function updated(Request $request)
     {
         if ($request->status == 'accepted') {
+            $name = $request->type->name;
             Notification::create([
-                'content' => "Your Request Accepted",
+                'content' => "Your Request $name Accepted",
                 'user_id' => $request->user_id,
 
             ]);

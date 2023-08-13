@@ -74,7 +74,9 @@ class EmployeesController extends Controller
 
     public function Empnotifications(Notification $notification)
     {
-        $notifications = $notification->where('user_id',Auth::id())->get();
+        $notifications = $notification->where('user_id',Auth::id())
+        ->latest()
+        ->get();
         return view('employee.notifications',compact('notifications'));
     }
 

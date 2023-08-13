@@ -10,6 +10,18 @@
     <x-errors name="type" />
 </div>
 <div class="mb-6">
+    <label name="from" for="from" class="inline-block text-lg mb-2"> From</label>
+    <input type="date" class="border border-gray-200 rounded p-2 w-full" value="{{ $empRequests->from }}"
+        name="from" />
+    <x-errors name="from" />
+</div>
+<div class="mb-6">
+    <label name="to" for="to" class="inline-block text-lg mb-2"> To</label>
+    <input type="date" class="border border-gray-200 rounded p-2 w-full" value="{{ $empRequests->to }}"
+        name="to" />
+    <x-errors name="notes" />
+</div>
+<div class="mb-6">
     <label name="notes" for="notes" class="inline-block text-lg mb-2"> Notes</label>
     <x-textarea type="text" class="border border-gray-200 rounded p-2 w-full" value="{{ $empRequests->notes }}"
         name="notes" />

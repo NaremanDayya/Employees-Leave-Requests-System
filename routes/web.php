@@ -32,10 +32,18 @@ Route::middleware('auth')->group(function () {
     Route::resource('employee.request', RequestsController::class);
     Route::resource('employees', EmployeesController::class);
     Route::resource('leaveTypes', LeaveTypesController::class);
-    Route::post('request/{request}/accept',[RequestsController::class,'accept'])->name('requests.accept');
-    Route::post('request/{request}/reject',[RequestsController::class,'reject'])->name('requests.reject');
-    Route::get('/myrequests',[EmployeesController::class,'myRequests'])->name('employee.requests');
-    Route::get('/notification',[EmployeesController::class,'Empnotifications'])->name('notifications');
-   
+    Route::post('request/{request}/accept', [RequestsController::class, 'accept'])->name('requests.accept');
+    Route::post('request/{request}/reject', [RequestsController::class, 'reject'])->name('requests.reject');
+    Route::get('/myrequests', [EmployeesController::class, 'myRequests'])->name('employee.requests');
+    Route::get('/notification', [EmployeesController::class, 'Empnotifications'])->name('notifications');
+    Route::get('/{request}/acceptPage',[RequestsController::class, 'acceptPage'])->name('accept');
+    Route::get('/{request}/rejectPage',[RequestsController::class, 'rejectPage'])->name('reject');
+    // Route::get('/accept', function (App\Models\Request $request) {
+    //     $id = $request->id;
+    //     return view('employee.requests.reject');
+    // })->name('reject');
+    // Route::get('/reject', function (App\Models\Request $request) {
+    //     return view('employee.requests.accept');
+    // })->name('accept');
 });
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
