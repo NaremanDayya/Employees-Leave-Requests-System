@@ -22,7 +22,8 @@
                         <td>{{ $request->employee->name }}</td>
                         <td>{{ $request->type->name }}</td>
                         <td>{{ $request->notes }}</td>
-                        <td>{{ \Carbon\Carbon::parse($request->from)->diffInDays(\Carbon\Carbon::parse($request->to)) }} Days</td>
+                        {{-- <td>{{ \Carbon\Carbon::parse($request->from)->diffInDays(\Carbon\Carbon::parse($request->to)) }} Days</td> --}}
+                        <td>{{ $request->from->diffInDays($request->to) }} Days</td>
                         <td>{{ $request->status }}</td>
 
                         <td>

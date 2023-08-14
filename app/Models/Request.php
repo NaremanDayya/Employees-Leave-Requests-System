@@ -13,6 +13,10 @@ class Request extends Model
         'user_id','leave_type_id','status','notes','from', 'to'
 
     ];
+    protected $casts = [
+        'from' => 'datetime',
+        'to' => 'datetime',
+    ];
 
     protected static function boot()
     {
